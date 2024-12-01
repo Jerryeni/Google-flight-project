@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { ArrowLeftRight } from 'lucide-react';
 import { SearchParams } from '../../types';
-import { PassengersSelect } from './PassengersSelect';
 import { AirportInput } from './AirportInput';
 import { format } from 'date-fns';
 import { searchFlights } from '../../services/api';
@@ -24,7 +23,6 @@ export const SearchForm = ({ onSearch }: Props) => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-  // const [flights, setFlights] = useState<any[]>([]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,9 +56,9 @@ export const SearchForm = ({ onSearch }: Props) => {
 
   return (
     <form onSubmit={handleSubmit} className="bg-transparent rounded-lg">
-      {/* Filters Section */}
+    
       <div className="flex flex-wrap justify-start items-center gap-2 ">
-        {/* Flight Type Dropdown */}
+     
         <div className="flex ">
           <select
             value={searchParams.tripType}
@@ -111,16 +109,15 @@ export const SearchForm = ({ onSearch }: Props) => {
         </div>
       </div>
 
-      {/* Main Search Form */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-4">
-        {/* From Airport Input */}
+     
         <div className="relative md:w-[60%] gap-2 w-full flex flex-col md:flex-row items-center">
           <AirportInput
             value={searchParams.from} label={''}
             onChange={(value, airport) => {
               setSearchParams({ ...searchParams, from: value, fromAirport: airport });
             }}
-            placeholder="Enter city or airport"
+            placeholder="Where from?"
           />
           <button className="w-fit">
             <div className="w-fit h-fit -mt-5 -ml-5 z-50 border absolute bg-[#3d3e3e] bg-opacity border-gray-300 border-opacity-50 rounded-full p-2">
@@ -132,11 +129,11 @@ export const SearchForm = ({ onSearch }: Props) => {
             onChange={(value, airport) => {
               setSearchParams({ ...searchParams, to: value, toAirport: airport });
             } }
-            placeholder="Enter city or airport" label={''}          />
+            placeholder="Where to?" label={''}          />
         </div>
 
         {/* Date Pickers */}
-        <div className="relative bg-[#303134] flex border rounded-lg border-gray-300 border-opacity-50 w-[40%] hover:border-opacity-70 items-center">
+        <div className="relative bg-[#303134] flex border rounded-lg border-gray-300 border-opacity-50 w-full md:w-[40%] hover:border-opacity-70 items-center">
           <DatePicker
             selected={searchParams.departureDate}
             onChange={(date) =>

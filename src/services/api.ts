@@ -1,13 +1,8 @@
 import axios from 'axios';
-import { SearchParams } from '../types';
 
 const api = axios.create({
   baseURL: 'https://sky-scrapper.p.rapidapi.com/api/v1/flights',
-    // params: {
-    //   lat: '19.242218017578125',
-    //   lng: '72.85846156046128',
-    //   locale: 'en-US'
-    // },
+   
   headers: {
     'X-RapidAPI-Key': import.meta.env.VITE_RAPIDAPI_KEY,
     'X-RapidAPI-Host': import.meta.env.VITE_RAPIDAPI_HOST
